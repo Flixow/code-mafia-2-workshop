@@ -9,6 +9,7 @@
   - [Remove task](#remove-task)
   - [Edit task](#edit-task)
 - [Search engine](#search-engine)
+- [Task status](#task-status)
 
 
 ## Setup
@@ -47,3 +48,7 @@ create-react-app react-todo
 ### Search engine
 * Create `Search` component with controlled input
 * Handle filters (ALL, SEARCHED) for `Todos` layout
+
+### Task status
+* Handle task status ([in]completed)
+* Handle filtering tasks based on status
