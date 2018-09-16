@@ -8,6 +8,7 @@
 - [Task manipulation](#task-manipulation)
   - [Remove task](#remove-task)
   - [Edit task](#edit-task)
+- [Search engine](#search-engine)
 
 
 ## Setup
@@ -43,3 +44,6 @@ create-react-app react-todo
 * Manage edit mode for `ListItem` component
 * Handle click outside of `ListItem` component if edit mode is on
 
+### Search engine
+* Create `Search` component with controlled input
+* Handle filters (ALL, SEARCHED) for `Todos` layout

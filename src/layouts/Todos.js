@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 
-import { Input, List } from '../components'
+import { Input, List, Search } from '../components'
 import { Task } from '../models'
 
+const FILTERS = {
+  SHOW_ALL: 'SHOW_ALL',
+  SHOW_SEARCHED: 'SHOW_SEARCHED'
+}
+
+const TODO_FILTERS = {
+  [FILTERS.SHOW_ALL]: () => true,
+  [FILTERS.SHOW_SEARCHED]: (todo, text) => new RegExp(text, 'ig').test(todo.title)
+}
 class Todos extends Component {
   state = {
     newTask: '',
     list: [],
+    filter: FILTERS.SHOW_ALL,
+    searchTerm: '',
   }
 
   handleAddTask = evt => {
@@ -43,19 +54,33 @@ class Todos extends Component {
     this.setState({ newTask: evt.target.value })
   }
 
+  handleSearchTask = term => {
+    this.setState({
+      filter: term ? FILTERS.SHOW_SEARCHED : FILTERS.SHOW_ALL,
+      searchTerm: term,
+    })
+  }
+
   render() {
+    const { list, newTask, filter, searchTerm } = this.state;
+    const filteredList = list.filter(todo => TODO_FILTERS[filter](todo, searchTerm))
+
     return (
       <div>
         This is Todos layout! <br />
+        <Search
+          handleSubmit={this.handleSearchTask}
+        />
         <form onSubmit={this.handleAddTask}>
           <Input
             onChange={this.handleChangeInput}
-            value={this.state.newTask}
+            value={newTask}
+            placeholder='Add new task...'
           />
         </form>
 
         <List
-          items={this.state.list}
+          items={filteredList}
           handleRemoveItem={this.handleRemoveTask}
           handleChangeItem={this.handleChangeTask}
         />
