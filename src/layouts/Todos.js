@@ -1,40 +1,40 @@
 import React, { Component } from 'react';
 
-import { Input } from '../components'
+import { Input, List } from '../components'
+import { Task } from '../models'
 
 class Todos extends Component {
   state = {
-    newTodo: '',
+    newTask: '',
     list: [],
   }
 
-  handleAddTodo = evt => {
+  handleAddTask = evt => {
     evt.preventDefault();
+    const task = new Task(this.state.newTask)
 
     this.setState({
-      list: [this.state.newTodo, ...this.state.list],
-      newTodo: '',
+      list: [task, ...this.state.list],
+      newTask: '',
     })
   }
 
   handleChangeInput = evt => {
-    this.setState({ newTodo: evt.target.value })
+    this.setState({ newTask: evt.target.value })
   }
 
   render() {
     return (
       <div>
         This is Todos layout! <br />
-        <form onSubmit={this.handleAddTodo}>
+        <form onSubmit={this.handleAddTask}>
           <Input
             onChange={this.handleChangeInput}
-            value={this.state.newTodo}
+            value={this.state.newTask}
           />
         </form>
 
-        {this.state.list.map(item => (
-          <li>{item}</li>
-        ))}
+        <List items={this.state.list} />
       </div>
     );
   }
