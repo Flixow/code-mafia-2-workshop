@@ -19,6 +19,26 @@ class Todos extends Component {
     })
   }
 
+  handleRemoveTask = id => {
+    const { list } = this.state;
+    const filteredList = list.filter(task => task.id !== id);
+
+    this.setState({ list: filteredList })
+  }
+
+  handleChangeTask = (id, title) => {
+    const { list } = this.state;
+    const editedList = list.map(task => {
+      if (task.id === id) {
+        task.title = title
+      }
+
+      return task
+    })
+
+    this.setState({ list: editedList })
+  }
+
   handleChangeInput = evt => {
     this.setState({ newTask: evt.target.value })
   }
@@ -34,7 +54,11 @@ class Todos extends Component {
           />
         </form>
 
-        <List items={this.state.list} />
+        <List
+          items={this.state.list}
+          handleRemoveItem={this.handleRemoveTask}
+          handleChangeItem={this.handleChangeTask}
+        />
       </div>
     );
   }

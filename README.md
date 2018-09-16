@@ -5,6 +5,9 @@
 - [Setup](#setup)
   - [boilerplate](#boilerplate)
 - [List component](#list-component)
+- [Task manipulation](#task-manipulation)
+  - [Remove task](#remove-task)
+  - [Edit task](#edit-task)
 
 
 ## Setup
@@ -28,3 +31,15 @@ create-react-app react-todo
 * Create `models` directory
 * Create `Task` model (id, title)
 * Use `Task` model to create new task
+
+### Task manipulation
+### Remove task
+* Add button to the `ListItem` component with `onClick` handler
+* Add method to remove task based on `id`
+
+### Edit task
+* Convert `ListItem` component to the statefull component
+* Add form to the `ListItem` component with controlled Input
+* Manage edit mode for `ListItem` component
+* Handle click outside of `ListItem` component if edit mode is on
+
